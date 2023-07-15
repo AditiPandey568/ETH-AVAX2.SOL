@@ -1,0 +1,23 @@
+For this project, write a smart contract that implements the require(), assert() and revert() statements.
+pragma solidity ^0.8.0;
+
+contract ErrorHandlingContract {
+    uint public value;
+
+    function setValue(uint _value) public {
+        require(_value > 0, "Value must be greater than zero");
+        value = _value;
+    }
+
+    function setValueWithAssert(uint _value) public {
+        assert(_value > 0);
+        value = _value;
+    }
+
+    function setValueWithRevert(uint _value) public {
+        if (_value <= 0) {
+            revert("Value must be greater than zero");
+        }
+        value = _value;
+    }
+}
