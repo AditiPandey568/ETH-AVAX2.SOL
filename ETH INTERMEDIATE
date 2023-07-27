@@ -1,23 +1,52 @@
-For this project, write a smart contract that implements the require(), assert() and revert() statements.
+#FUNCTIONALITY OF SOLIDITY-
+This Solidity program is a simple program that demonstrates the basic syntax and functionality of the Solidity programming language.
+The purpose of this program is to serve as the understanding require(), assert() and revert() functionality.
+
+#DISCRIPTION-
+The provided Solidity contract, "RequireAssertRevertExample," showcases the usage of three important functions for smart contract validation and error
+handling
+
+require(): Enforces that only the contract owner can set the value.
+
+assert(): Ensures that the _value provided is greater than or equal to the minimum value.
+
+revert(): Explicitly reverts the transaction if the _value is greater than 1000, providing a custom error message.
+
+The contract aims to demonstrate access control, internal checks, and specific validation rules, promoting secure and robust smart contract development.
+
+#GETTING STARTED-
+#EXECUTING CODE-
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
+contract RequireAssertRevertExample {
+    address public owner;
+    uint256 public minValue = 100;
 
-contract ErrorHandlingContract {
-    uint public value;
-
-    function setValue(uint _value) public {
-        require(_value > 0, "Value must be greater than zero");
-        value = _value;
+    constructor() {
+        owner = msg.sender;
     }
 
-    function setValueWithAssert(uint _value) public {
-        assert(_value > 0);
-        value = _value;
-    }
+    function setValue(uint256 _value) external {
+        // Use require() to check a condition and revert if it's not met.
+        require(msg.sender == owner, "Only the contract owner can set the value");
 
-    function setValueWithRevert(uint _value) public {
-        if (_value <= 0) {
-            revert("Value must be greater than zero");
+        // Use assert() to check a condition that should never fail, indicating a bug if it does.
+        assert(_value >= minValue);
+
+        // Use revert() to explicitly revert the transaction with a custom error message.
+        if (_value > 1000) {
+            revert("Value cannot be greater than 1000");
         }
-        value = _value;
+
+        // Your logic to set the value goes here
     }
 }
+
+#AUTHOR-
+Metacrafter Chris
+@metacraftersio
+
+#LICENSE-
+This project is licensed under the MIT License - see the LICENSE.md file for details
+
+
