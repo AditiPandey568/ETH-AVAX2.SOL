@@ -13,8 +13,6 @@ The project consists of three main components:
 
 3. *Solidity*: The Solidity code is implemented . It defines the smart contract.
 
-## Getting Started
-
 ### Prerequisites
 - MetaMask browser extension
 
